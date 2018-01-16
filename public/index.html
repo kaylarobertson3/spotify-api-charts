@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Final Project</title>
+    <link rel="stylesheet" href="/public/style.css">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/britecharts/2.4.9/css/britecharts.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Open+Sans" rel="stylesheet">
+</head>
+
+<body id="body">
+    <template id="hello">
+        <div id="wrapper">
+        <section id="intro">
+            <h1 id="title">Hi, {{ name }}</h1>
+            <br/>
+            <h2>Welcome to your spotify dashboard</h2>
+            <div class="fancyButton">
+                <button class="next" id="enter"><span>ENTER</span></button>
+             </div>
+        </section>
+
+        <section id="topArtists">
+            <div class="content">
+            <h1 id="title2">You have great taste in music.</h1>
+            <p>Here's a collection of some of your top artists on Spotify, based on your  behavior and play history —- not including tracks played in incognito mode. Placement is randomly generated, and each circle size represents the artist's popularity across Spotify.</p>
+            <br />
+            <div id="bubbleChart">
+                <svg>
+                </svg>
+            </div>
+            <br />
+            <p class="footnote">* Infrequent users of Spotify may not have enough data to generate full dataset.</p>
+            <div class="fancyButton">
+                <button class="back" id="back1"><span>BACK</span></button>
+                <button class="next" id="next1"><span>NEXT</span></button>
+             </div>
+             </div>
+        </section>
+
+        <section id="myFaves" class="animated slideInLeft">
+            <div class="content">
+                <h1 id="title2">High-energy or acoustic?</h1>
+                <p>Based on data from your top tracks listened to on Spotify, you prefer these features in a song. First, choose a time period:</p>
+                <div id="faveFeatures"></div>
+                <div class="options">
+                    <button class="back" id="recentFaveFeatures">Recent (past 6 months) </button>
+                    <button class="back" id="getFaveAudioFeatures">Long term (past few years)</button>
+                </div>
+            <div class="fancyButton">
+                <button class="back" id="back3"><span>BACK</span></button>
+                <button class="next" id="next3"><span>NEXT</span></button>
+             </div>
+         </div>
+        </section>
+
+        <section id="trackSearch" class="animated slideOutLeft">
+            <div class="content">
+                <h1 id="title2">Audio features by track</h1>
+            <p>Search a song to see its individual audio features</p>
+            <p id="clickedTrack1">Showing audio features for: </p>
+            <p id="clickedTrack"></p>
+            <div id="indivAudioFeaturesChart"></div>
+            <form>
+               <input type="text" maxlength="100" placeholder=" Search for a track">
+               <p class="footnote" id="error"></p>
+               <div class="fancyButton">
+                   <button class="next" id="search" type="submit">SEARCH</button>
+               </div>
+             </form>
+             <ul id="results"></ul>
+            <div class="fancyButton">
+                <button class="back" id="back4"><span>BACK</span></button>
+                <button class="next" id="next4"><span>NEXT</span></button>
+            </div>
+        </div>
+        </section>
+
+        <section id="end" class="animated slideOutLeft">
+            <div class="content">
+
+            <h1 id="title">About</h1>
+            <p>This application uses Spotify data from the Spotify web api</p>
+            <p class="footnote">
+
+            </p>
+            <div class="fancyButton">
+                <button class="next" id="restart"><span>RESTART</span></button>
+            </div>
+        </div>
+        </section>
+
+    </div>
+
+        <footer>
+            <p>&#9400; Kayla Robertson</p>
+        </footer>
+        <div class="ball"></div>
+    </template>
+
+    <!-- Load in scripts -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/britecharts/2.4.9/umd/miniTooltip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/britecharts/2.4.9/umd/colors.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/britecharts@1/dist/bundled/britecharts.min.js"></script>
+    <!-- <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.6.0/d3.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-selection/1.2.0/d3-selection.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
+    <script src="/public/client.js" charset="utf-8"></script>
+</body>
+
+</html>
