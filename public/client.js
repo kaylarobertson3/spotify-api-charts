@@ -197,8 +197,8 @@ function startApp() {
     $('form').submit(function(e) {
 
         let input = $('input').val()
-        $('#clickedTrack1').hide(200);
-        $('#clickedTrack').empty();
+        $('#clickedTrack').hide(200);
+        $('#searchedTrack').empty();
         $('#error').empty();
         $('#indivAudioFeaturesChart').empty();
 
@@ -721,9 +721,9 @@ function trackFeatures(id) {
         },
         success: function(name) {
             console.log("TRACK INFO", name);
-            $('#clickedTrack').empty();
-            $('#clickedTrack1').show(200);
-            $('#clickedTrack').append(name.name + ' | ' + name.artists[0].name);
+            $('#searchedTrack').empty();
+            $('#clickedTrack').show(200);
+            $('#searchedTrack').append(name.name + ' | ' + name.artists[0].name);
 
         }
     });

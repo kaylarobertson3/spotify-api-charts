@@ -44,17 +44,21 @@
             <div class="content">
                 <h1 id="title2">High-energy or acoustic?</h1>
                 <p>Based on data from your top tracks listened to on Spotify, you prefer these features in a song. First, choose a time period:</p>
+                <div class="options">
+                    <button class="back" id="recentFaveFeatures">Recent (past 6 months) </button>
+                    <button class="back" id="getFaveAudioFeatures">Long term (past few years)</button>
+                </div>
                 <p class="recent">Your <strong>RECENT</strong> favorite audio features:</p>
                 <p class="longterm">Your <strong>LONG-TERM</strong> favorite audio features:</p>
                 <div id="faveFeatures"></div>
                 <p class="showDefinitions"><strong>Click here to view detailed descriptions of audio features</strong></h2>
                 <div class="definitions">
-                    <p class="def"><strong>First Def</strong>def def def def def def def def def def def def</p>
-                    <p class="def"><strong>First Def</strong>def def def def def def def def def def def def</p>
-                </div>
-                <div class="options">
-                    <button class="back" id="recentFaveFeatures">Recent (past 6 months) </button>
-                    <button class="back" id="getFaveAudioFeatures">Long term (past few years)</button>
+                    <p class="def"><strong>Energy </strong>Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.</p>
+                    <p class="def"><strong>Danceability </strong>Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable.</p>
+                    <p class="def"><strong>Liveness </strong>Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live.</p>
+                    <p class="def"><strong>Acousticness </strong>A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic.</p>
+                    <p class="def"><strong>Valence </strong>A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).</p>
+                    <p class="def"><strong>Speechiness </strong>Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. Values above 0.66 describe tracks that are probably made entirely of spoken words. Values between 0.33 and 0.66 describe tracks that may contain both music and speech, either in sections or layered, including such cases as rap music. Values below 0.33 most likely represent music and other non-speech-like tracks.</p>
                 </div>
             <div class="fancyButton">
                 <button class="back" id="back3"><span>BACK</span></button>
@@ -67,9 +71,7 @@
             <div class="content">
                 <h1 id="title2">Audio features by track</h1>
             <p>Search a song to see its individual audio features</p>
-            <p id="clickedTrack1">Showing audio features for            <span id="clickedTrack"></span>
- </p>
-            <p id="clickedTrack"></p>
+            <p id="clickedTrack">Showing audio features for <span id="searchedTrack"></span></p>
             <div id="indivAudioFeaturesChart"></div>
             <form>
                <input type="text" maxlength="100" placeholder=" Search for a track">
@@ -78,6 +80,15 @@
                    <button class="next" id="search" type="submit">SEARCH</button>
                </div>
              </form>
+             <p class="showDefinitions"><strong>Click here to view detailed descriptions of audio features</strong></h2>
+             <div class="definitions">
+                 <p class="def"><strong>Energy </strong>Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.</p>
+                 <p class="def"><strong>Danceability </strong>Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable.</p>
+                 <p class="def"><strong>Liveness </strong>Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live.</p>
+                 <p class="def"><strong>Acousticness </strong>A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic.</p>
+                 <p class="def"><strong>Valence </strong>A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).</p>
+                 <p class="def"><strong>Speechiness </strong>Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. Values above 0.66 describe tracks that are probably made entirely of spoken words. Values between 0.33 and 0.66 describe tracks that may contain both music and speech, either in sections or layered, including such cases as rap music. Values below 0.33 most likely represent music and other non-speech-like tracks.</p>
+             </div>
              <ul id="results"></ul>
             <div class="fancyButton">
                 <button class="back" id="back4"><span>BACK</span></button>

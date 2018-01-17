@@ -157,6 +157,10 @@ button:hover {
     display: none;
 }
 
+.def {
+    font-size: 14px;
+    text-align: left;
+}
 /* CHARTS */
 .toolTip {
 position: absolute;
@@ -200,14 +204,8 @@ position: absolute;
     max-width: 1000px;
 }
 
-#clickedTrack {
-    /* font-weight: 700; */
-    font-size: 16px;
-    padding: 0;
-    margin: 0;
-}
 
-#clickedTrack1 {
+#clickedTrack {
     font-weight: 300;
     font-size: 20px;
     display: none;
@@ -230,6 +228,9 @@ input {
 
 }
 
+#searchedTrack {
+    font-weight: 700;
+}
 #results li {
     font-family: 'Montserrat', sans-serif;
     color: #3D3D3D;
