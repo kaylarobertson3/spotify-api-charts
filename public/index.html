@@ -44,7 +44,14 @@
             <div class="content">
                 <h1 id="title2">High-energy or acoustic?</h1>
                 <p>Based on data from your top tracks listened to on Spotify, you prefer these features in a song. First, choose a time period:</p>
+                <p class="recent">Your <strong>RECENT</strong> favorite audio features:</p>
+                <p class="longterm">Your <strong>LONG-TERM</strong> favorite audio features:</p>
                 <div id="faveFeatures"></div>
+                <p class="showDefinitions"><strong>Click here to view detailed descriptions of audio features</strong></h2>
+                <div class="definitions">
+                    <p class="def"><strong>First Def</strong>def def def def def def def def def def def def</p>
+                    <p class="def"><strong>First Def</strong>def def def def def def def def def def def def</p>
+                </div>
                 <div class="options">
                     <button class="back" id="recentFaveFeatures">Recent (past 6 months) </button>
                     <button class="back" id="getFaveAudioFeatures">Long term (past few years)</button>
@@ -60,7 +67,8 @@
             <div class="content">
                 <h1 id="title2">Audio features by track</h1>
             <p>Search a song to see its individual audio features</p>
-            <p id="clickedTrack1">Showing audio features for: </p>
+            <p id="clickedTrack1">Showing audio features for            <span id="clickedTrack"></span>
+ </p>
             <p id="clickedTrack"></p>
             <div id="indivAudioFeaturesChart"></div>
             <form>

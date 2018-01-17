@@ -58,6 +58,15 @@ $(document).ready(function() {
 // START APP ===========================================================================
 function startApp() {
 
+    // show and hide audio definitions
+    $('.showDefinitions').on('click', function() {
+        $('.definitions').show(200);
+    })
+
+    $('.hideDefinitions').on('click', function() {
+        $('.definitions').hide(200);
+    })
+
     // Navigation
     $('#enter').on('click', function() {
         $('#intro').hide(200);
@@ -156,11 +165,9 @@ function startApp() {
                 xhr.setRequestHeader('Authorization', 'Bearer ' + access_token);
             },
             success: function(data) {
-                console.log("User top artists medium term:", data.items);
-
                 var myJSON = JSON.stringify(data.items);
-                var bubbleChartData = JSON.parse(myJSON);
-                bubbleChart();
+                // bubbleChart(myJSON);
+                bubbleChart(myJSON);
             }
         });
     });
@@ -195,7 +202,6 @@ function startApp() {
         $('#error').empty();
         $('#indivAudioFeaturesChart').empty();
 
-
         if (input == '') {
             console.log("can't be empty");
             $('#error').append("Input can't be empty.");
@@ -223,7 +229,7 @@ function startApp() {
             },
             success: function(data, id) {
                 $('#error').empty();
-                if (data.tracks.items.length == 0){
+                if (data.tracks.items.length == 0) {
                     console.log("no results");
                     $('#error').append("No Results. Try again!");
                 }
@@ -242,7 +248,8 @@ function startApp() {
 
     // USER TOP TRACKS Long TERM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     $("#getFaveAudioFeatures").click(function() {
-        console.log("fave audio feature button clicked");
+        $('.recent').hide(200);
+        $('.longterm').show(300);
         $.ajax({
             url: "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=50",
             type: "GET",
@@ -320,8 +327,7 @@ function startApp() {
                             name: "danceability",
                             description: "Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable.",
                             value: totals.danceability / data.audio_features.length
-                        },
-                        {
+                        }, {
                             name: "liveness",
                             description: "Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live.",
                             value: totals.liveness / data.audio_features.length
@@ -329,8 +335,7 @@ function startApp() {
                             name: "acousticness",
                             description: "A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic.",
                             value: totals.acousticness / data.audio_features.length
-                        },
-                        {
+                        }, {
                             name: "valence",
                             description: "A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).",
                             value: totals.valence / data.audio_features.length
@@ -352,7 +357,8 @@ function startApp() {
 
     // USER TOP TRACKS short TERM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     $("#recentFaveFeatures").click(function() {
-        // $('#faveFeatures').empty();
+        $('.longterm').hide(200);
+        $('.recent').show(300);
         $.ajax({
             url: "https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=50",
             type: "GET",
@@ -427,8 +433,7 @@ function startApp() {
                             name: "danceability",
                             description: "Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable.",
                             value: totals.danceability / data.audio_features.length
-                        },
-                        {
+                        }, {
                             name: "liveness",
                             description: "Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live.",
                             value: totals.liveness / data.audio_features.length
@@ -436,8 +441,7 @@ function startApp() {
                             name: "acousticness",
                             description: "A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic.",
                             value: totals.acousticness / data.audio_features.length
-                        },
-                        {
+                        }, {
                             name: "valence",
                             description: "A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).",
                             value: totals.valence / data.audio_features.length
@@ -463,127 +467,201 @@ function startApp() {
 
 // CHART: D3 bubble chart based on top artists (long term)
 
-function bubbleChart() {
+// function bubbleChart() {
+//
+//     d3.json('data.json', function(error, data) {
+//         if (error) {
+//             console.error('Error getting or parsing the data.');
+//             throw error;
+//         }
+//         var chart = bubbleChart().width(800).height(400);
+//         d3.select('#bubbleChart').data(data).call(chart);
+//     });
+//
+//     var width = '100vw',
+//         height = 960,
+//         maxRadius = 6,
+//         columnForColors = "name",
+//         columnForRadius = "popularity";
+//
+//     function chart(selection) {
+//         var data = selection.enter().data();
+//         var div = selection,
+//             svg = div.selectAll('svg');
+//         svg.attr('width', width).attr('height', height);
+//
+//         var tooltip = selection.append("div").style("position", "absolute").style("visibility", "hidden").style("text-decoration", "none").style("padding", "12px").style("background-color", "rgb(230, 230, 230)").style("border-radius", "4px").style("text-align", "left").style("font-family", "helvetica").style("width", "200px").style("line-height", "150%").text("");
+//
+//         var simulation = d3.forceSimulation(data).force("charge", d3.forceManyBody().strength([-90])).force("x", d3.forceX()).force("y", d3.forceY()).on("tick", ticked);
+//
+//         function ticked(e) {
+//             node.attr("cx", function(d) {
+//                 return d.x * 4;
+//             }).attr("cy", function(d) {
+//                 return d.y * 4;
+//             });
+//         }
+//
+//         // var colorCircles = ["#d53e4f", "#fc8d59", "#3288bd", "#e6f598", "#99d594"];
+//         var scaleRadius = d3.scaleLinear().domain([
+//             d3.min(data, function(d) {
+//                 return + d[columnForRadius];
+//             }),
+//             d3.max(data, function(d) {
+//                 return + d[columnForRadius];
+//             })
+//         ]).range([10, 30]);
+//
+//         var node = svg.selectAll("circle").data(data).enter().append("circle").attr('r', function(d) {
+//             return scaleRadius(d[columnForRadius]);
+//         }).style("fill", function() {
+//             return '#d53e4f';
+//         }).attr('transform', 'translate(' + [
+//             width / 2,
+//             height / 2
+//         ] + ')').on("mouseover", function(d) {
+//             tooltip.html(d[columnForColors] + "<br>" + "Followers: " + d.followers.total + "<br>" + "Popularity: " + d[columnForRadius]);
+//             return tooltip.style("visibility", "visible");
+//         }).on("mousemove", function() {
+//             return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
+//         }).on("mouseout", function() {
+//             return tooltip.style("visibility", "hidden");
+//         });
+//     }
+//
+//     chart.width = function(value) {
+//         if (!arguments.length) {
+//             return width;
+//         }
+//         width = value;
+//         return chart;
+//     };
+//
+//     chart.height = function(value) {
+//         if (!arguments.length) {
+//             return height;
+//         }
+//         height = value;
+//         return chart;
+//     };
+//
+//     chart.columnForColors = function(value) {
+//         if (!arguments.columnForColors) {
+//             return columnForColors;
+//         }
+//         columnForColors = value;
+//         return chart;
+//     };
+//
+//     chart.columnForRadius = function(value) {
+//         if (!arguments.columnForRadius) {
+//             return columnForRadius;
+//         }
+//         columnForRadius = value;
+//         return chart;
+//     };
+//
+//     return chart;
+// }
 
-    d3.json('data.json', function(error, data) {
-      if (error) {
-          console.error('Error getting or parsing the data.');
-          throw error;
-      }
-      var chart = bubbleChart().width(800).height(400);
-      d3.select('#bubbleChart').data(data).call(chart);
-    });
+// new bubble chart test with dyanmic data:
 
-    var width = '100vw',
-         height = 960,
-         maxRadius = 6,
-        columnForColors = "name",
-        columnForRadius = "popularity";
 
-    function chart(selection) {
-        var data = selection.enter().data();
-        var div = selection,
-            svg = div.selectAll('svg');
+function bubbleChart(myJSON) {
+
+        var data = myJSON;
+
+        // where do these go //
+    var chart = bubbleChart(myJSON).width(800).height(400);
+    d3.select('#bubbleChart').data(myJSON).call(chart);
+    // where do these go //
+
+
+
+        var width = '100vw',
+            height = 960,
+            maxRadius = 6,
+            columnForColors = "name",
+            columnForRadius = "popularity";
+
+        function chart(selection) {
+            var data = selection.enter().data();
+            var div = selection,
+                svg = div.selectAll('svg');
             svg.attr('width', width).attr('height', height);
 
-        var tooltip = selection
-            .append("div")
-            .style("position", "absolute")
-            .style("visibility", "hidden")
-            .style("text-decoration", "none")
-            .style("padding", "12px")
-            .style("background-color", "rgb(230, 230, 230)")
-            .style("border-radius", "4px")
-            .style("text-align", "left")
-            .style("font-family", "helvetica")
-            .style("width", "200px")
-            .style("line-height", "150%")
-            .text("");
+            var tooltip = selection.append("div").style("position", "absolute").style("visibility", "hidden").style("text-decoration", "none").style("padding", "12px").style("background-color", "rgb(230, 230, 230)").style("border-radius", "4px").style("text-align", "left").style("font-family", "helvetica").style("width", "200px").style("line-height", "150%").text("");
 
+            var simulation = d3.forceSimulation(data).force("charge", d3.forceManyBody().strength([-90])).force("x", d3.forceX()).force("y", d3.forceY()).on("tick", ticked);
 
-        var simulation = d3.forceSimulation(data)
-            .force("charge", d3.forceManyBody().strength([-90]))
-            .force("x", d3.forceX())
-            .force("y", d3.forceY())
-            .on("tick", ticked);
-
-        function ticked(e) {
-            node.attr("cx", function(d) {
+            function ticked(e) {
+                node.attr("cx", function(d) {
                     return d.x * 4;
-                })
-                .attr("cy", function(d) {
+                }).attr("cy", function(d) {
                     return d.y * 4;
                 });
+            }
+
+            var scaleRadius = d3.scaleLinear().domain([
+                d3.min(data, function(d) {
+                    return + d[columnForRadius];
+                }),
+                d3.max(data, function(d) {
+                    return + d[columnForRadius];
+                })
+            ]).range([10, 30]);
+
+            var node = svg.selectAll("circle").data(data).enter().append("circle").attr('r', function(d) {
+                return scaleRadius(d[columnForRadius]);
+            }).style("fill", function() {
+                return '#d53e4f';
+            }).attr('transform', 'translate(' + [
+                width / 2,
+                height / 2
+            ] + ')').on("mouseover", function(d) {
+                tooltip.html(d[columnForColors] + "<br>" + "Followers: " + d.followers.total + "<br>" + "Popularity: " + d[columnForRadius]);
+                return tooltip.style("visibility", "visible");
+            }).on("mousemove", function() {
+                return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
+            }).on("mouseout", function() {
+                return tooltip.style("visibility", "hidden");
+            });
         }
 
-        var colorCircles = ["#d53e4f", "#fc8d59", "#3288bd", "#e6f598", "#99d594"];
-        var scaleRadius = d3.scaleLinear().domain([d3.min(data, function(d) {
-            return +d[columnForRadius];
-        }), d3.max(data, function(d) {
-            return +d[columnForRadius];
-        })]).range([10, 30])
+        chart.width = function(value) {
+            if (!arguments.length) {
+                return width;
+            }
+            width = value;
+            return chart;
+        };
 
-        var node = svg.selectAll("circle")
-            .data(data)
-            .enter()
-            .append("circle")
-            .attr('r', function(d) {
-                return scaleRadius(d[columnForRadius])
-            })
-         .style("fill", function(d) {
-             return '#d53e4f';
-         })
+        chart.height = function(value) {
+            if (!arguments.length) {
+                return height;
+            }
+            height = value;
+            return chart;
+        };
 
-         .attr('transform', 'translate(' + [width / 2, height / 2] + ')')
-           .on("mouseover", function(d) {
-               tooltip.html(d[columnForColors] + "<br>" + "Followers: " + d.followers.total + "<br>" + "Popularity: " + d[columnForRadius]);
-               return tooltip.style("visibility", "visible");
-           })
-           .on("mousemove", function() {
-               return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
-           })
-           .on("mouseout", function() {
-               return tooltip.style("visibility", "hidden");
-           });
-   }
+        chart.columnForColors = function(value) {
+            if (!arguments.columnForColors) {
+                return columnForColors;
+            }
+            columnForColors = value;
+            return chart;
+        };
 
-    chart.width = function(value) {
-        if (!arguments.length) {
-            return width;
-        }
-        width = value;
+        chart.columnForRadius = function(value) {
+            if (!arguments.columnForRadius) {
+                return columnForRadius;
+            }
+            columnForRadius = value;
+            return chart;
+        };
+
         return chart;
-    };
-
-    chart.height = function(value) {
-        if (!arguments.length) {
-            return height;
-        }
-        height = value;
-        return chart;
-    };
-
-
-    chart.columnForColors = function(value) {
-        if (!arguments.columnForColors) {
-            return columnForColors;
-        }
-        columnForColors = value;
-        return chart;
-    };
-
-    chart.columnForRadius = function(value) {
-        if (!arguments.columnForRadius) {
-            return columnForRadius;
-        }
-        columnForRadius = value;
-        return chart;
-    };
-
-    return chart;
-}
-
-
+    }
 
 
 
@@ -620,10 +698,6 @@ function trackFeatures(id) {
                     name: "acousticness",
                     value: data.acousticness
                 },
-                // {
-                //     name: "instrumentalness",
-                //     value: data.instrumentalness
-                // },
                 {
                     name: "valence",
                     value: data.valence
@@ -635,7 +709,6 @@ function trackFeatures(id) {
 
             // make a chart for indiv song features
             indivAudioFeaturesChart(features);
-
 
         }
     });
@@ -669,8 +742,6 @@ function indivAudioFeaturesChart(features) {
         ? chartContainer.node().getBoundingClientRect().width
         : false;
 
-    // chartTooltip.title('Audio features for');
-
     barChart.width(containerWidth).height(300).isAnimated(true).horizontal(false).percentageAxisToMaxRatio(1.3).on('customMouseOver', chartTooltip.show).on('customMouseMove', chartTooltip.update).on('customMouseOut', chartTooltip.hide).on('customMouseOver', chartTooltip.show).on('customMouseMove', chartTooltip.update).on('customMouseOut', chartTooltip.hide).colorSchema(["#d53e4f", "#fc8d59", "#3288bd", "#e6f598", "#99d594"]);
 
     chartContainer.datum(features).call(barChart);
@@ -686,7 +757,6 @@ function avgAudioFeaturesChart(averagesData) {
 
     var barChart = new britecharts.bar();
     var chartTooltip = new britecharts.miniTooltip();
-
 
     var chartContainer = d3.select('#faveFeatures');
     var containerWidth = chartContainer.node()

@@ -3,6 +3,8 @@
     /* color: #3D3D3D; */
 }
 
+
+
 #body {
     display: flex;
     align-items: center;
@@ -142,6 +144,18 @@ button:hover {
     align-items: center;
 }
 
+.recent {
+    display: none;
+
+}
+
+.longterm {
+    display: none;
+}
+
+.definitions {
+    display: none;
+}
 
 /* CHARTS */
 .toolTip {
@@ -187,7 +201,7 @@ position: absolute;
 }
 
 #clickedTrack {
-    font-weight: 700;
+    /* font-weight: 700; */
     font-size: 16px;
     padding: 0;
     margin: 0;
