@@ -159,10 +159,7 @@ function startApp() {
                 console.log("User top artists medium term:", data.items);
 
                 var myJSON = JSON.stringify(data.items);
-                console.log(myJSON);
                 var bubbleChartData = JSON.parse(myJSON);
-
-                // bubbleChart(bubbleChartData);
                 bubbleChart();
             }
         });
@@ -424,31 +421,29 @@ function startApp() {
                     var averagesData = [
                         {
                             name: "energy",
+                            description: "Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.",
                             value: totals.energy / data.audio_features.length
                         }, {
                             name: "danceability",
+                            description: "Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable.",
                             value: totals.danceability / data.audio_features.length
                         },
-                        // {
-                        //     name: "loudness",
-                        //     value: totals.loudness / data.audio_features.length
-                        // },
                         {
                             name: "liveness",
+                            description: "Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live.",
                             value: totals.liveness / data.audio_features.length
                         }, {
                             name: "acousticness",
+                            description: "A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic.",
                             value: totals.acousticness / data.audio_features.length
                         },
-                        // {
-                        //     name: "instrumentalness",
-                        //     value: totals.instrumentalness / data.audio_features.length
-                        // },
                         {
                             name: "valence",
+                            description: "A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).",
                             value: totals.valence / data.audio_features.length
                         }, {
                             name: "speechiness",
+                            description: "Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. Values above 0.66 describe tracks that are probably made entirely of spoken words. Values between 0.33 and 0.66 describe tracks that may contain both music and speech, either in sections or layered, including such cases as rap music. Values below 0.33 most likely represent music and other non-speech-like tracks.",
                             value: totals.speechiness / data.audio_features.length
                         }
                     ];
@@ -603,6 +598,7 @@ function bubbleChart() {
 // GET: audio features based on single track
 function trackFeatures(id) {
     console.log('getting audio features for a track with id: ', id);
+    $('#results').empty();
     $.ajax({
         url: "https://api.spotify.com/v1/audio-features/" + id,
         type: "GET",
@@ -685,11 +681,12 @@ function indivAudioFeaturesChart(features) {
 
 // CHART: averages of audio features for user's top tracks
 function avgAudioFeaturesChart(averagesData) {
-    // var desc = averagesData.description;
+    console.log("DESC", averagesData);
     $('#faveFeatures').empty();
 
     var barChart = new britecharts.bar();
     var chartTooltip = new britecharts.miniTooltip();
+
 
     var chartContainer = d3.select('#faveFeatures');
     var containerWidth = chartContainer.node()
@@ -697,8 +694,6 @@ function avgAudioFeaturesChart(averagesData) {
         : false;
 
     barChart.width(containerWidth).height(300).isAnimated(true).horizontal(false).percentageAxisToMaxRatio(1.3).on('customMouseOver', chartTooltip.show).on('customMouseMove', chartTooltip.update).on('customMouseOut', chartTooltip.hide).colorSchema(["#d53e4f", "#fc8d59", "#3288bd", "#e6f598", "#99d594"]);
-
-    // chartTooltip.title(desc);
 
     chartContainer.datum(averagesData).call(barChart);
 
