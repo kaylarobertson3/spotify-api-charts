@@ -61,6 +61,14 @@ p, ol {
     color: #3D3D3D;
 }
 
+#intro {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 #title {
     max-width: 1000px;
     font-size: 90px;
@@ -127,14 +135,14 @@ button:hover {
     -o-box-shadow: 2px 2px  rgba(0,0,0,1);
     background-color: #A2FBD0;
     /* color: white; */
-    font-size: 18px;
+    font-size: 14px;
 }
 
 .back {
     background-color: white;
     border: 2px solid black;
     border-radius: 5px;
-    font-size: 18px;
+    font-size: 14px;
 }
 
 .fancyButton {
@@ -146,11 +154,22 @@ button:hover {
 
 .recent {
     display: none;
-
+    font-size: 17px;
+    display: none;
+    padding: .5rem 1rem .5rem 1rem;
+    margin: 1rem;
+    background-color: rgba(244, 244, 244, 0.84);
+    border-radius: 7px;
 }
 
 .longterm {
     display: none;
+    font-size: 17px;
+    display: none;
+    padding: .5rem 1rem .5rem 1rem;
+    margin: 1.5rem;
+    background-color: rgba(244, 244, 244, 0.84);
+    border-radius: 7px;
 }
 
 .definitions {
@@ -215,14 +234,16 @@ position: absolute;
 
 #clickedTrack {
     font-weight: 300;
-    font-size: 20px;
+    font-size: 17px;
     display: none;
-    padding: 2rem 0 1rem 0;
+    padding: .5rem 1rem .5rem 1rem;
     margin: 0;
+    background-color: rgba(244, 244, 244, 0.84);
+    border-radius: 7px;
 }
 
 input {
-    margin: 2rem 0 0 0;
+    margin: 1rem 0 0 0;
     width: 300px;
     height: 33px;
 }
@@ -243,8 +264,8 @@ input {
     font-family: 'Montserrat', sans-serif;
     color: #3D3D3D;
     text-align: left;
-    padding: 1rem;
-    font-size: 16px;
+    padding: .5rem;
+    font-size: 14px;
 }
 
 li:hover {
@@ -311,7 +332,7 @@ footer p {
     }
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 656px) {
     #title {
         font-size: 60px;
         margin-top: 0;
@@ -323,7 +344,7 @@ footer p {
     #title2 {
         margin-top: 0;
         padding-top: 0;
-        font-size: 40px;
+        font-size: 35px;
         max-width: 500px;
 
     }
@@ -337,6 +358,11 @@ footer p {
     p {
         font-size: 17px;
         max-width: 500px;
+    }
+
+    button {
+        padding: 7px 10px 7px 10px;
+        margin: 0.5rem;
     }
 }
 
@@ -346,7 +372,6 @@ footer p {
         padding-top: 0;
         font-size: 50px;
         text-align: center;
-        max-width: 400px;
     }
 
     #title2 {
@@ -354,17 +379,19 @@ footer p {
         padding-top: 0;
         font-size: 40px;
         text-align: center;
-        max-width: 400px;
     }
     h2 {
         font-size: 30px;
         text-align: center;
-        max-width: 400px;
     }
 
     p {
         font-size: 17px;
         max-width: 400px;
+    }
+
+    #clickedTrack {
+        padding: .5rem;
     }
 }
 
@@ -379,19 +406,16 @@ footer p {
     #title2 {
         margin-top: 0;
         padding-top: 0;
-        font-size: 40px;
+        font-size: 30px;
         text-align: center;
-        max-width: 280px;
     }
     h2 {
         font-size: 30px;
         text-align: center;
-        max-width: 280px;
     }
 
     p {
         font-size: 17px;
-        max-width: 280px;
     }
 
     input {
@@ -404,37 +428,51 @@ footer p {
 
     }
 
+    .next {
+        font-size: 12px;
 
-        .next {
-            font-size: 12px;
-
-        }
+    }
 }
 
-@media screen and (max-width: 299px) {
+@media screen and (max-width: 499px) {
+    #wrapper {
+        margin: 1rem;
+    }
+
+    #clickedTrack {
+        margin-top: 1rem;
+    }
+
+    .recent {
+        margin-top: 1rem;
+    }
+
+    .longterm {
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (max-width: 340px) {
     #title {
         margin-top: 0;
         padding-top: 0;
-        font-size: 50px;
+        font-size: 45px;
         text-align: center;
     }
 
     #title2 {
         margin-top: 0;
         padding-top: 0;
-        font-size: 40px;
+        font-size: 30px;
         text-align: center;
-        max-width: 200px;
     }
     h2 {
         font-size: 30px;
         text-align: center;
-        max-width: 200px;
     }
 
     p {
-        font-size: 17px;
-        max-width: 200px;
+        font-size: 15px;
     }
 
 
