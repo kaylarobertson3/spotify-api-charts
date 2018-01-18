@@ -77,6 +77,7 @@ function startApp() {
         $('#topArtists').hide();
         $('#myFaves').fadeIn('fast');
         $('.definitions').hide();
+        $('.showDefinitions').hide();
 
     });
 
@@ -91,6 +92,8 @@ function startApp() {
         $('#myFaves').hide();
         $('#trackSearch').fadeIn('fast');
         $('.definitions').hide();
+        $('.showDefinitions').hide();
+
 
     });
 
@@ -256,6 +259,9 @@ function startApp() {
 
     // USER TOP TRACKS Long TERM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     $("#getFaveAudioFeatures").click(function() {
+        $('#recentFaveFeatures').css("background-color", 'rgb(255, 255, 255)');
+        $('#getFaveAudioFeatures').css("background-color", '#A2FBD0');
+        $('.showDefinitions').fadeIn('fast');
         $('.recent').hide();
         $('.longterm').fadeIn('fast');
         $.ajax({
@@ -364,7 +370,10 @@ function startApp() {
     // USER TOP TRACKS short TERM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     $("#recentFaveFeatures").click(function() {
         $('.longterm').hide();
+        $('#recentFaveFeatures').css("background-color", '#A2FBD0')
+        $('#getFaveAudioFeatures').css("background-color", 'rgb(255, 255, 255)');
         $('.recent').fadeIn('fast');
+        $('.showDefinitions').fadeIn('fast');
         $.ajax({
             url: "https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=50",
             type: "GET",
@@ -729,7 +738,6 @@ function trackFeatures(id) {
             $('#searchedTrack').empty();
             $('#clickedTrack').fadeIn('fast');
             $('#searchedTrack').append(name.name + ' | ' + name.artists[0].name);
-
         }
     });
 }
@@ -739,6 +747,7 @@ function trackFeatures(id) {
 
 // CHART: individual audio features
 function indivAudioFeaturesChart(features) {
+    $('.showDefinitions').fadeIn('fast');
 
     $('#indivAudioFeaturesChart').empty();
 
