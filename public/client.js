@@ -47,7 +47,7 @@ $(document).ready(function() {
         },
         success: function(data) {
             // Once I get the user info, set up the template and run everything
-            document.body.innerHTML = Handlebars.templates.hello({name: data.display_name});
+            document.body.innerHTML = Handlebars.templates.main({name: data.display_name});
 
             // startApp is everything
             startApp();
@@ -60,62 +60,62 @@ function startApp() {
 
     // show and hide audio definitions
     $('.showDefinitions').on('click', function() {
-        $('.definitions').show(200);
+        $('.definitions').fadeIn('fast');
     })
 
     $('.hideDefinitions').on('click', function() {
-        $('.definitions').hide(200);
+        $('.definitions').hide();
     })
 
     // Navigation
     $('#enter').on('click', function() {
-        $('#intro').hide(200);
-        $('#topArtists').show(400);
+        $('#intro').hide();
+        $('#topArtists').fadeIn('fast');
     });
 
     $('#next1').on('click', function() {
-        $('#topArtists').hide(200);
-        $('#myFaves').show(500);
-        $('.definitions').hide(200);
+        $('#topArtists').hide();
+        $('#myFaves').fadeIn('fast');
+        $('.definitions').hide();
 
     });
 
     $('#back1').on('click', function() {
-        $('#intro').show(200);
-        $('#topArtists').hide(500);
-        $('.definitions').hide(200);
+        $('#intro').fadeIn('fast');
+        $('#topArtists').hide();
+        $('.definitions').hide();
 
     });
 
     $('#next3').on('click', function() {
-        $('#myFaves').hide(200);
-        $('#trackSearch').show(300);
-        $('.definitions').hide(200);
+        $('#myFaves').hide();
+        $('#trackSearch').fadeIn('fast');
+        $('.definitions').hide();
 
     });
 
     $('#back3').on('click', function() {
-        $('#myFaves').hide(200);
-        $('#topArtists').show(300);
-        $('.definitions').hide(200);
+        $('#myFaves').hide();
+        $('#topArtists').fadeIn('fast');
+        $('.definitions').hide();
 
     });
 
     $('#next4').on('click', function() {
-        $('#trackSearch').hide(200);
-        $('#end').show(300);
-        $('.definitions').hide(200);
+        $('#trackSearch').hide();
+        $('#end').fadeIn('fast');
+        $('.definitions').hide();
     });
 
     $('#back4').on('click', function() {
-        $('#trackSearch').hide(200);
-        $('#myFaves').show(300);
-        $('.definitions').hide(200);
+        $('#trackSearch').hide();
+        $('#myFaves').fadeIn('fast');
+        $('.definitions').hide();
     });
 
     $('#restart').on('click', function() {
-        $('#end').hide(200);
-        $('#intro').show(300);
+        $('#end').hide();
+        $('#intro').fadeIn('fast');
     });
 
     // balls (decorative)
@@ -256,8 +256,8 @@ function startApp() {
 
     // USER TOP TRACKS Long TERM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     $("#getFaveAudioFeatures").click(function() {
-        $('.recent').hide(200);
-        $('.longterm').show(300);
+        $('.recent').hide();
+        $('.longterm').fadeIn('fast');
         $.ajax({
             url: "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=50",
             type: "GET",
@@ -363,8 +363,8 @@ function startApp() {
 
     // USER TOP TRACKS short TERM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     $("#recentFaveFeatures").click(function() {
-        $('.longterm').hide(200);
-        $('.recent').show(300);
+        $('.longterm').hide();
+        $('.recent').fadeIn('fast');
         $.ajax({
             url: "https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=50",
             type: "GET",
@@ -727,7 +727,7 @@ function trackFeatures(id) {
         success: function(name) {
             console.log("TRACK INFO", name);
             $('#searchedTrack').empty();
-            $('#clickedTrack').show(200);
+            $('#clickedTrack').fadeIn('fast');
             $('#searchedTrack').append(name.name + ' | ' + name.artists[0].name);
 
         }

@@ -11,36 +11,35 @@
 </head>
 
 <body id="body">
-    <template id="hello">
+    <template id="main">
         <div id="wrapper">
-        <section id="intro">
-            <h1 id="title">Hi, {{ name }}</h1>
-            <br/>
-            <h2>Welcome to your spotify dashboard</h2>
-            <div class="fancyButton">
-                <button class="next" id="enter"><span>ENTER</span></button>
-             </div>
-        </section>
+            <section id="intro">
+                <h1 id="title">Hi, {{ name }}</h1>
+                <br/>
+                <h2>Welcome to your spotify dashboard</h2>
+                <div class="fancyButton">
+                    <button class="next" id="enter"><span>ENTER</span></button>
+                 </div>
+            </section>
 
-        <section id="topArtists">
-            <div class="content">
-            <h1 id="title2">You have great taste in music.</h1>
-            <p>Here's a collection of some of your top artists on Spotify, based on your  behavior and play history —- not including tracks played in incognito mode. Placement is randomly generated, and each circle size represents the artist's popularity across Spotify.</p>
-            <br />
-            <div id="bubbleChart">
-                <svg>
-                </svg>
-            </div>
-            <br />
-            <p class="footnote">* Infrequent users of Spotify may not have enough data to generate full dataset.</p>
-            <div class="fancyButton">
-                <button class="back" id="back1"><span>BACK</span></button>
-                <button class="next" id="next1"><span>NEXT</span></button>
-             </div>
-             </div>
-        </section>
+            <section id="topArtists">
+                <div class="content">
+                    <h1 id="title2">You have great taste in music.</h1>
+                    <p>Here's a collection of some of your top artists on Spotify, based on your  behavior and play history —- not including tracks played in incognito mode. Placement is randomly generated, and each circle size represents the artist's popularity across Spotify.</p>
+                    <br />
+                    <div id="bubbleChart">
+                        <svg></svg>
+                    </div>
+                    <br />
+                    <p class="footnote">* Infrequent users of Spotify may not have enough data to generate full dataset.</p>
+                    <div class="fancyButton">
+                        <button class="back" id="back1"><span>BACK</span></button>
+                        <button class="next" id="next1"><span>NEXT</span></button>
+                     </div>
+                 </div>
+            </section>
 
-        <section id="myFaves" class="animated slideInLeft">
+        <section id="myFaves">
             <div class="content">
                 <h1 id="title2">High-energy or acoustic?</h1>
                 <p>Based on data from your top tracks listened to on Spotify, you prefer these features in a song. First, choose a time period:</p>
@@ -50,10 +49,12 @@
                 </div>
                 <p class="recent">Your <strong>RECENT</strong> favorite audio features:</p>
                 <p class="longterm">Your <strong>LONG-TERM</strong> favorite audio features:</p>
-                <div id="faveFeatures"></div>
+                <div class="holdChart">
+                    <div id="faveFeatures"></div>
+                </div>
                 <p class="showDefinitions"><strong>Click here to view detailed descriptions of audio features</strong></h2>
                 <div class="definitions">
-                    <p class="def"><strong>Energy: </strong>Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.</p>
+                    <p class="def"><strong>Energy: </strong>Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale.</p>
                     <p class="def"><strong>Danceability: </strong>Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable.</p>
                     <p class="def"><strong>Liveness: </strong>Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live.</p>
                     <p class="def"><strong>Acousticness: </strong>A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic.</p>
@@ -70,50 +71,47 @@
         <section id="trackSearch" class="animated slideOutLeft">
             <div class="content">
                 <h1 id="title2">Audio features by track</h1>
-            <p>Search a song to see its individual audio features</p>
-            <p id="clickedTrack">Showing audio features for <span id="searchedTrack"></span></p>
-            <div id="indivAudioFeaturesChart"></div>
-            <ul id="results"></ul>
-            <form>
-               <input type="text" maxlength="100" placeholder=" Search for a track">
-               <p class="footnote" id="error"></p>
-               <div class="fancyButton">
-                   <button class="next" id="search" type="submit">SEARCH</button>
-               </div>
-             </form>
-             <p class="showDefinitions"><strong>Click here to view detailed descriptions of audio features</strong></h2>
-             <div class="definitions">
-                 <p class="def"><strong>Energy: </strong>Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.</p>
-                 <p class="def"><strong>Danceability: </strong>Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable.</p>
-                 <p class="def"><strong>Liveness: </strong>Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live.</p>
-                 <p class="def"><strong>Acousticness: </strong>A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic.</p>
-                 <p class="def"><strong>Valence: </strong>A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).</p>
-                 <p class="def"><strong>Speechiness: </strong>Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. Values above 0.66 describe tracks that are probably made entirely of spoken words. Values between 0.33 and 0.66 describe tracks that may contain both music and speech, either in sections or layered, including such cases as rap music. Values below 0.33 most likely represent music and other non-speech-like tracks.</p>
-             </div>
-            <div class="fancyButton">
-                <button class="back" id="back4"><span>BACK</span></button>
-                <button class="next" id="next4"><span>NEXT</span></button>
+                <p>Search a song to see its individual audio features</p>
+                <p id="clickedTrack">Showing audio features for <span id="searchedTrack"></span></p>
+                <div id="indivAudioFeaturesChart"></div>
+                <ul id="results"></ul>
+                <form>
+                   <input type="text" maxlength="100" placeholder=" Search for a track">
+                   <p class="footnote" id="error"></p>
+                   <div class="fancyButton">
+                       <button class="next" id="search" type="submit">SEARCH</button>
+                   </div>
+                 </form>
+                 <p class="showDefinitions"><strong>Click here to view detailed descriptions of audio features</strong></h2>
+                 <div class="definitions">
+                     <p class="def"><strong>Energy: </strong>Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale.</p>
+                     <p class="def"><strong>Danceability: </strong>Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable.</p>
+                     <p class="def"><strong>Liveness: </strong>Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live.</p>
+                     <p class="def"><strong>Acousticness: </strong>A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic.</p>
+                     <p class="def"><strong>Valence: </strong>A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).</p>
+                     <p class="def"><strong>Speechiness: </strong>Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. Values above 0.66 describe tracks that are probably made entirely of spoken words. Values between 0.33 and 0.66 describe tracks that may contain both music and speech, either in sections or layered, including such cases as rap music. Values below 0.33 most likely represent music and other non-speech-like tracks.</p>
+                 </div>
+                <div class="fancyButton">
+                    <button class="back" id="back4"><span>BACK</span></button>
+                    <button class="next" id="next4"><span>NEXT</span></button>
+                </div>
             </div>
-        </div>
         </section>
 
         <section id="end" class="animated slideOutLeft">
             <div class="content">
-
-            <h1 id="title">About</h1>
-            <p>This application uses Spotify data from the <a href="https://developer.spotify.com/web-api/"> Spotify Web Api</a>.</p>
-            <p>For more information on the way Spotify calculates audio features of tracks, visit the <a href="https://developer.spotify.com/web-api/get-audio-features/">API documentation here.</a></p>
-            <p>
-            Note: Infrequent users of Spotify may not have enough data to generate full datasets.</p>
-
-            <p class="footnote">
-            </p>
-            <div class="fancyButton">
-                <button class="next" id="restart"><span>RESTART</span></button>
+                <h1 id="title">About</h1>
+                <p>This application uses Spotify data from the <a href="https://developer.spotify.com/web-api/"> Spotify Web Api</a>.</p>
+                <p>For more information on the way Spotify calculates audio features of tracks, visit the <a href="https://developer.spotify.com/web-api/get-audio-features/">API documentation here.</a></p>
+                <p>
+                Note: Infrequent users of Spotify may not have enough data to generate full datasets.</p>
+                <p class="footnote">
+                </p>
+                <div class="fancyButton">
+                    <button class="next" id="restart"><span>RESTART</span></button>
+                </div>
             </div>
-        </div>
         </section>
-
     </div>
 
         <footer>
@@ -123,13 +121,10 @@
     </template>
 
     <!-- Load in scripts -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/britecharts/2.4.9/umd/miniTooltip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/britecharts/2.4.9/umd/colors.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/britecharts@1/dist/bundled/britecharts.min.js"></script>
-    <!-- <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.6.0/d3.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-selection/1.2.0/d3-selection.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>

@@ -184,6 +184,13 @@ position: absolute;
     max-width: 1000px;
 }
 
+.holdChart {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 /* RANDOM */
 
