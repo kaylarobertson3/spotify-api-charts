@@ -76,31 +76,41 @@ function startApp() {
     $('#next1').on('click', function() {
         $('#topArtists').hide(200);
         $('#myFaves').show(500);
+        $('.definitions').hide(200);
+
     });
 
     $('#back1').on('click', function() {
         $('#intro').show(200);
         $('#topArtists').hide(500);
+        $('.definitions').hide(200);
+
     });
 
     $('#next3').on('click', function() {
         $('#myFaves').hide(200);
         $('#trackSearch').show(300);
+        $('.definitions').hide(200);
+
     });
 
     $('#back3').on('click', function() {
         $('#myFaves').hide(200);
         $('#topArtists').show(300);
+        $('.definitions').hide(200);
+
     });
 
     $('#next4').on('click', function() {
         $('#trackSearch').hide(200);
         $('#end').show(300);
+        $('.definitions').hide(200);
     });
 
     $('#back4').on('click', function() {
         $('#trackSearch').hide(200);
         $('#myFaves').show(300);
+        $('.definitions').hide(200);
     });
 
     $('#restart').on('click', function() {
@@ -109,50 +119,50 @@ function startApp() {
     });
 
     // balls (decorative)
-    const colors = ["#A2FBD0", "#C7C1F0", "#1B1B1B", "#FBF2B8", "#E17A69"];
-
-    const numBalls = 40;
-    const balls = [];
-
-    for (let i = 0; i < numBalls; i++) {
-        let ball = document.createElement("div");
-        ball.classList.add("ball");
-        ball.style.background = colors[Math.floor(Math.random() * colors.length)];
-        ball.style.left = `${Math.floor(Math.random() * 100)}vw`;
-        ball.style.top = `${Math.floor(Math.random() * 100)}vh`;
-        ball.style.transform = `scale(${Math.random()})`;
-        ball.style.width = `${Math.random()}em`;
-        ball.style.height = ball.style.width;
-
-        balls.push(ball);
-        // document.body.append(ball);
-        $('#wrapper').append(ball);
-
-    }
-
-    // Keyframes
-    balls.forEach((el, i, ra) => {
-        let to = {
-            x: Math.random() * (i % 2 === 0
-                ? -11
-                : 11),
-            y: Math.random() * 12
-        };
-
-        let anim = el.animate([
-            {
-                transform: "translate(0, 0)"
-            }, {
-                transform: `translate(${to.x}rem, ${to.y}rem)`
-            }
-        ], {
-            duration: (Math.random() + 1) * 2000, // random duration
-            direction: "alternate",
-            fill: "both",
-            iterations: Infinity,
-            easing: "ease-in-out"
-        });
-    });
+    // const colors = ["#A2FBD0", "#C7C1F0", "#1B1B1B", "#FBF2B8", "#E17A69"];
+    //
+    // const numBalls = 40;
+    // const balls = [];
+    //
+    // for (let i = 0; i < numBalls; i++) {
+    //     let ball = document.createElement("div");
+    //     ball.classList.add("ball");
+    //     ball.style.background = colors[Math.floor(Math.random() * colors.length)];
+    //     ball.style.left = `${Math.floor(Math.random() * 100)}vw`;
+    //     ball.style.top = `${Math.floor(Math.random() * 100)}vh`;
+    //     ball.style.transform = `scale(${Math.random()})`;
+    //     ball.style.width = `${Math.random()}em`;
+    //     ball.style.height = ball.style.width;
+    //
+    //     balls.push(ball);
+    //     // document.body.append(ball);
+    //     $('#wrapper').append(ball);
+    //
+    // }
+    //
+    // // Keyframes
+    // balls.forEach((el, i, ra) => {
+    //     let to = {
+    //         x: Math.random() * (i % 2 === 0
+    //             ? -11
+    //             : 11),
+    //         y: Math.random() * 12
+    //     };
+    //
+    //     let anim = el.animate([
+    //         {
+    //             transform: "translate(0, 0)"
+    //         }, {
+    //             transform: `translate(${to.x}rem, ${to.y}rem)`
+    //         }
+    //     ], {
+    //         duration: (Math.random() + 1) * 2000, // random duration
+    //         direction: "alternate",
+    //         fill: "both",
+    //         iterations: Infinity,
+    //         easing: "ease-in-out"
+    //     });
+    // });
 
     // USER TOP ARTISTS LONG TERM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     $('#enter').on('click', function() {
@@ -211,7 +221,6 @@ function startApp() {
         // }
 
         let resultIDs = [];
-        console.log('search was pressed');
         e.preventDefault();
         $('#results').empty();
 
@@ -233,7 +242,6 @@ function startApp() {
                     console.log("no results");
                     $('#error').append("No Results. Try again!");
                 }
-                console.log("search results for: ", id, data);
                 // display search results
                 data.tracks.items.forEach(function(track, index) {
                     resultIDs.push(track.id);
@@ -258,8 +266,6 @@ function startApp() {
                 xhr.setRequestHeader('Authorization', 'Bearer ' + access_token);
             },
             success: function(data) {
-                console.log("***User top tracks long term", data.items);
-
                 // data to array
                 var ids = data.items.map(function(track) {
                     return track.id;
@@ -675,7 +681,6 @@ function bubbleChart(myJSON) {
 
 // GET: audio features based on single track
 function trackFeatures(id) {
-    console.log('getting audio features for a track with id: ', id);
     $('#results').empty();
     $.ajax({
         url: "https://api.spotify.com/v1/audio-features/" + id,
@@ -729,7 +734,10 @@ function trackFeatures(id) {
     });
 }
 
-// CHART: new tooltip test
+
+
+
+// CHART: individual audio features
 function indivAudioFeaturesChart(features) {
 
     $('#indivAudioFeaturesChart').empty();
@@ -742,7 +750,7 @@ function indivAudioFeaturesChart(features) {
         ? chartContainer.node().getBoundingClientRect().width
         : false;
 
-    barChart.width(containerWidth).height(300).isAnimated(true).horizontal(false).percentageAxisToMaxRatio(1.3).on('customMouseOver', chartTooltip.show).on('customMouseMove', chartTooltip.update).on('customMouseOut', chartTooltip.hide).on('customMouseOver', chartTooltip.show).on('customMouseMove', chartTooltip.update).on('customMouseOut', chartTooltip.hide).colorSchema(["#d53e4f", "#fc8d59", "#3288bd", "#e6f598", "#99d594"]);
+    barChart.width(containerWidth).height(300).isAnimated(true).horizontal(false).percentageAxisToMaxRatio(1.3).on('customMouseOver', chartTooltip.show).on('customMouseMove', chartTooltip.update).on('customMouseOut', chartTooltip.hide).colorSchema(["#d53e4f", "#fc8d59", "#3288bd", "#e6f598", "#99d594"]);
 
     chartContainer.datum(features).call(barChart);
 
@@ -752,7 +760,7 @@ function indivAudioFeaturesChart(features) {
 
 // CHART: averages of audio features for user's top tracks
 function avgAudioFeaturesChart(averagesData) {
-    console.log("DESC", averagesData);
+
     $('#faveFeatures').empty();
 
     var barChart = new britecharts.bar();
