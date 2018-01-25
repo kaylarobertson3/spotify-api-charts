@@ -28,7 +28,7 @@ const authEndpoint = 'https://accounts.spotify.com/authorize';
 
 // my app's client ID, redirect URI and desired scopes
 const clientId = '477fce2d987341da9f370b68cad9e026';
-const redirectUri = 'http://localhost:8888/callback';
+const redirectUri = '/http://spotify-api-charts.herokuapp.com/callback';
 const scopes = ['user-top-read', 'playlist-read-private', 'user-library-read'];
 
 // If there is no token, redirect to Spotify authorization
