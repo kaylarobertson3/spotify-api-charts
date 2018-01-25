@@ -73,7 +73,7 @@ function startApp() {
         $('#topArtists').fadeIn('fast');
     });
 
-    $('#next1').on('click', showRecentFaveFeaturesChart, function() {
+    $('#next1').on('click', function() {
         $('#topArtists').hide();
         $('#myFaves').fadeIn('fast');
         $('.definitions').hide();
@@ -256,9 +256,7 @@ function startApp() {
     });
 
     // USER TOP TRACKS Long TERM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    $("#getFaveAudioFeatures").on('click', showRecentFaveFeaturesChart);
-
-    var showRecentFaveFeaturesChart = function() {
+    $("#getFaveAudioFeatures").on('click', function() {
         $('#recentFaveFeatures').css("background-color", 'rgb(255, 255, 255)');
         $('#getFaveAudioFeatures').css("background-color", '#A2FBD0');
         $('.showDefinitions').fadeIn('fast');
@@ -360,17 +358,15 @@ function startApp() {
 
                     console.log('sending averages to chart: ', averagesData);
                     avgAudioFeaturesChart(averagesData);
-
                 }
-
             });
         }
-    }
+    });
 
     // USER TOP TRACKS short TERM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    $("#recentFaveFeatures").click(function () {
+    $("#recentFaveFeatures, #next1").click(function () {
         $('.longterm').hide();
-        $('#recentFaveFeatures').css("background-color", '#A2FBD0')
+        $('#recentFaveFeatures').css("background-color", '#A2FBD0');
         $('#getFaveAudioFeatures').css("background-color", 'rgb(255, 255, 255)');
         $('.recent').fadeIn('fast');
         $('.showDefinitions').fadeIn('fast');
