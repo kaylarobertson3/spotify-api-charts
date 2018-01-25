@@ -74,7 +74,7 @@ function startApp() {
     });
 
     $('#next1').on('click', function() {
-        $('#back1').hide();
+        $('#back2').hide();
         $('#next3').hide();
         $('#topArtists').hide();
         $('#myFaves').fadeIn('fast');
@@ -95,8 +95,6 @@ function startApp() {
         $('#trackSearch').fadeIn('fast');
         $('.definitions').hide();
         $('.showDefinitions').hide();
-
-
     });
 
     $('#back3').on('click', function() {
@@ -374,7 +372,7 @@ function startApp() {
     // USER TOP TRACKS short TERM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     $("#recentFaveFeatures").click(function() {
         $('#back3').fadeIn('fast');
-        $('#next1').fadeIn('fast');
+        // $('#next1').fadeIn('fast');
         $('.longterm').hide();
         $('#recentFaveFeatures').css("background-color", '#A2FBD0')
         $('#getFaveAudioFeatures').css("background-color", 'rgb(255, 255, 255)');
