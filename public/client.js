@@ -176,6 +176,7 @@ function startApp() {
             },
             success: function(data) {
                 var myJSON = JSON.stringify(data.items);
+                console.log("bubbleChartData", myJSON);
                 bubbleChart(myJSON);
             }
         });
@@ -250,7 +251,6 @@ function startApp() {
                 });
             }
         });
-
     });
 
     // USER TOP TRACKS Long TERM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -657,6 +657,13 @@ function bubbleChart(myJSON) {
 
     return chart;
 }
+
+
+
+
+
+
+
 
 // GET: audio features based on single track
 function trackFeatures(id) {
