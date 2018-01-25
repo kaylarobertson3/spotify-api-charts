@@ -74,7 +74,7 @@ function startApp() {
     });
 
     $('#next1').on('click', function() {
-        $('#back2').hide();
+        $('#back3').hide();
         $('#next3').hide();
         $('#topArtists').hide();
         $('#myFaves').fadeIn('fast');
@@ -260,7 +260,7 @@ function startApp() {
     // USER TOP TRACKS Long TERM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     $("#getFaveAudioFeatures").click(function() {
         $('#back3').fadeIn('fast');
-        $('#next1').fadeIn('fast');
+        $('#next3').fadeIn('fast');
         $('#recentFaveFeatures').css("background-color", 'rgb(255, 255, 255)');
         $('#getFaveAudioFeatures').css("background-color", '#A2FBD0');
         $('.showDefinitions').fadeIn('fast');
@@ -372,7 +372,7 @@ function startApp() {
     // USER TOP TRACKS short TERM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     $("#recentFaveFeatures").click(function() {
         $('#back3').fadeIn('fast');
-        // $('#next1').fadeIn('fast');
+        $('#next3').fadeIn('fast');
         $('.longterm').hide();
         $('#recentFaveFeatures').css("background-color", '#A2FBD0')
         $('#getFaveAudioFeatures').css("background-color", 'rgb(255, 255, 255)');
