@@ -24,6 +24,8 @@ Once a user authorizes the app, they can view charts of their top tracks...
 <br />
 <br />
 <br />
+<hr />
+
 
  or favorite audio features (long term or short term) ...
  <br />
@@ -33,6 +35,7 @@ Once a user authorizes the app, they can view charts of their top tracks...
 <br />
 <br />
 <hr />
+
 or search any track to view its unique audio features.
 <br />
 ![Preview 3](https://github.com/kaylarobertson3/spotify-api-charts/blob/master/spotify3.gif "Preview 3")
