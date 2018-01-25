@@ -75,7 +75,7 @@ function startApp() {
 
     $('#next1').on('click', function() {
         $('#back1').hide();
-        $('#next1').hide();
+        $('#next3').hide();
         $('#topArtists').hide();
         $('#myFaves').fadeIn('fast');
         $('.definitions').hide();
