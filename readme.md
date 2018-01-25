@@ -6,17 +6,18 @@ Add topics
 My final project for Spiced Academy, a 12 week JavaScript-based web development course. Spotify API charts was completed in the last week of the course.
 
 ## Technology
-**Data Viz:** D3.js (bubble chart),[Britecharts](https://github.com/eventbrite/britecharts), a D3 based library (bar charts)
-**Frontend:** Handlebars
-**Backend:** Express
-**API:** [Spotify](https://developer.spotify.com/web-api/)
+* **Data Viz:** [D3.js](https://d3js.org/) (bubble chart), [Britecharts](https://github.com/eventbrite/britecharts), a D3 based library (bar charts)
 
-## Description
-The app connects to the [Spotify Web API](https://developer.spotify.com/web-api/) using the Implicit Grant Authorization.
+* **Frontend:** Handlebars
 
-Once a user authorizes the app, they can view charts of their top tracks or favorite audio features, or search any track to view its unique audio features.
+* **Backend:** Express
+**API:** The app connects to the [Spotify Web API](https://developer.spotify.com/web-api/) using the Implicit Grant Authorization.
 
 ## Preview
+
+Once a user authorizes the app, they can view charts of their top tracks...
+
+<br/>
 
 ![Preview 1](https://github.com/kaylarobertson3/spotify-api-charts/blob/master/spotify1.gif "Preview 1")
 <br />
@@ -24,14 +25,14 @@ Once a user authorizes the app, they can view charts of their top tracks or favo
 <br />
 <br />
 
+ or favorite audio features (long term or short term) ...
+ <br />
 ![Preview 2](https://github.com/kaylarobertson3/spotify-api-charts/blob/master/spotify2.gif "Preview 2")
 <br />
 <br />
 <br />
 <br />
 
+or search any track to view its unique audio features.
+<br />
 ![Preview 3](https://github.com/kaylarobertson3/spotify-api-charts/blob/master/spotify3.gif "Preview 3")
-<br />
-<br />
-<br />
-<br />
