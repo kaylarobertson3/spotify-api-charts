@@ -15,3 +15,23 @@ My final project for Spiced Academy, a 12 week JavaScript-based web development 
 The app connects to the [Spotify Web API](https://developer.spotify.com/web-api/) using the Implicit Grant Authorization.
 
 Once a user authorizes the app, they can view charts of their top tracks or favorite audio features, or search any track to view its unique audio features.
+
+## Preview
+
+![Preview 1](https://github.com/kaylarobertson3/spotify-api-charts/blob/master/spotify1.gif "Preview 1")
+<br />
+<br />
+<br />
+<br />
+
+![Preview 2](https://github.com/kaylarobertson3/spotify-api-charts/blob/master/spotify2.gif "Preview 2")
+<br />
+<br />
+<br />
+<br />
+
+![Preview 3](https://github.com/kaylarobertson3/spotify-api-charts/blob/master/spotify3.gif "Preview 3")
+<br />
+<br />
+<br />
+<br />
