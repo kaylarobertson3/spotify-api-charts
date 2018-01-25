@@ -73,14 +73,11 @@ function startApp() {
         $('#topArtists').fadeIn('fast');
     });
 
-    $('#next1').on('click', function() {
-        $('#back3').hide();
-        $('#next3').hide();
+    $('#next1').on('click', showRecentFaveFeaturesChart, function() {
         $('#topArtists').hide();
         $('#myFaves').fadeIn('fast');
         $('.definitions').hide();
         $('.showDefinitions').hide();
-
     });
 
     $('#back1').on('click', function() {
@@ -95,6 +92,8 @@ function startApp() {
         $('#trackSearch').fadeIn('fast');
         $('.definitions').hide();
         $('.showDefinitions').hide();
+
+
     });
 
     $('#back3').on('click', function() {
@@ -114,7 +113,6 @@ function startApp() {
         $('#trackSearch').hide();
         $('#myFaves').fadeIn('fast');
         $('.definitions').hide();
-        $('.showDefinitions').fadeIn('fast');
     });
 
     $('#restart').on('click', function() {
@@ -258,9 +256,9 @@ function startApp() {
     });
 
     // USER TOP TRACKS Long TERM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    $("#getFaveAudioFeatures").click(function() {
-        $('#back3').fadeIn('fast');
-        $('#next3').fadeIn('fast');
+    $("#getFaveAudioFeatures").on('click', showRecentFaveFeaturesChart);
+
+    var showRecentFaveFeaturesChart = function() {
         $('#recentFaveFeatures').css("background-color", 'rgb(255, 255, 255)');
         $('#getFaveAudioFeatures').css("background-color", '#A2FBD0');
         $('.showDefinitions').fadeIn('fast');
@@ -367,12 +365,10 @@ function startApp() {
 
             });
         }
-    });
+    }
 
     // USER TOP TRACKS short TERM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    $("#recentFaveFeatures").click(function() {
-        $('#back3').fadeIn('fast');
-        $('#next3').fadeIn('fast');
+    $("#recentFaveFeatures").click(function () {
         $('.longterm').hide();
         $('#recentFaveFeatures').css("background-color", '#A2FBD0')
         $('#getFaveAudioFeatures').css("background-color", 'rgb(255, 255, 255)');
