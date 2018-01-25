@@ -2,11 +2,9 @@
   "name": "spiced-social-network",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "build": "node build.js",
-    "start": "npm run build && node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
   },
   "engines": {
     "node": "6.10.3"
