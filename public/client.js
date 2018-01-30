@@ -61,11 +61,11 @@ function startApp() {
     // show and hide audio definitions
     $('.showDefinitions').on('click', function() {
         $('.definitions').fadeIn('fast');
-    })
+    });
 
     $('.hideDefinitions').on('click', function() {
         $('.definitions').hide();
-    })
+    });
 
     // Navigation
     $('#enter').on('click', function() {
@@ -118,56 +118,10 @@ function startApp() {
         $('#intro').fadeIn('fast');
     });
 
-    // balls (decorative)
-    // const colors = ["#A2FBD0", "#C7C1F0", "#1B1B1B", "#FBF2B8", "#E17A69"];
-    //
-    // const numBalls = 40;
-    // const balls = [];
-    //
-    // for (let i = 0; i < numBalls; i++) {
-    //     let ball = document.createElement("div");
-    //     ball.classList.add("ball");
-    //     ball.style.background = colors[Math.floor(Math.random() * colors.length)];
-    //     ball.style.left = `${Math.floor(Math.random() * 100)}vw`;
-    //     ball.style.top = `${Math.floor(Math.random() * 100)}vh`;
-    //     ball.style.transform = `scale(${Math.random()})`;
-    //     ball.style.width = `${Math.random()}em`;
-    //     ball.style.height = ball.style.width;
-    //
-    //     balls.push(ball);
-    //     // document.body.append(ball);
-    //     $('#wrapper').append(ball);
-    //
-    // }
-    //
-    // // Keyframes
-    // balls.forEach((el, i, ra) => {
-    //     let to = {
-    //         x: Math.random() * (i % 2 === 0
-    //             ? -11
-    //             : 11),
-    //         y: Math.random() * 12
-    //     };
-    //
-    //     let anim = el.animate([
-    //         {
-    //             transform: "translate(0, 0)"
-    //         }, {
-    //             transform: `translate(${to.x}rem, ${to.y}rem)`
-    //         }
-    //     ], {
-    //         duration: (Math.random() + 1) * 2000, // random duration
-    //         direction: "alternate",
-    //         fill: "both",
-    //         iterations: Infinity,
-    //         easing: "ease-in-out"
-    //     });
-    // });
 
     // USER TOP ARTISTS LONG TERM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     $('#enter').on('click', function() {
-
-        console.log('getTopArtistsLong clicked');
+        console.log("calling d3 chart");
         $.ajax({
             url: "https://api.spotify.com/v1/me/top/artists?time_range=medium_term&limit=50",
             type: "GET",
@@ -176,8 +130,9 @@ function startApp() {
             },
             success: function(data) {
                 var myJSON = JSON.stringify(data.items);
-                console.log("bubbleChartData", myJSON);
-                bubbleChart(myJSON);
+                console.log("calling d3 chart");
+                var chart = bubbleChart(myJSON).width(800).height(400);
+                d3.select('#bubbleChart').data(myJSON).call(chart);
             }
         });
     });
@@ -206,7 +161,7 @@ function startApp() {
     // SEARCH INDIV TRACK ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     $('form').submit(function(e) {
 
-        let input = $('input').val()
+        let input = $('input').val();
         $('#clickedTrack').hide(200);
         $('#searchedTrack').empty();
         $('#error').empty();
@@ -305,22 +260,13 @@ function startApp() {
                         tempo: 0,
                         duration_ms: 0,
                         speechiness: 0
-                    }
+                    };
 
                     data.audio_features.forEach(function(audioFeature) {
                         for (let prop in totals) {
-                            totals[prop] += audioFeature[prop]
+                            totals[prop] += audioFeature[prop];
                         }
                     });
-
-                    var averages = {
-                        energy: totals.energy / data.audio_features.length,
-                        danceability: totals.danceability / data.audio_features.length,
-                        liveness: totals.liveness / data.audio_features.length,
-                        acousticness: totals.acousticness / data.audio_features.length,
-                        valence: totals.valence / data.audio_features.length,
-                        speechiness: totals.speechiness / data.audio_features.length
-                    }
 
                     var averagesData = [
                         {
@@ -413,15 +359,6 @@ function startApp() {
                             totals[prop] += audioFeature[prop];
                         }
                     });
-
-                    var averages = {
-                        energy: totals.energy / data.audio_features.length,
-                        danceability: totals.danceability / data.audio_features.length,
-                        liveness: totals.liveness / data.audio_features.length,
-                        acousticness: totals.acousticness / data.audio_features.length,
-                        valence: totals.valence / data.audio_features.length,
-                        speechiness: totals.speechiness / data.audio_features.length
-                    }
 
                     var averagesData = [
                         {
@@ -564,14 +501,7 @@ function startApp() {
 
 
 // new bubble chart test with dyanmic data: ==========
-function bubbleChart(myJSON) {
-
-    var data = myJSON;
-
-    // where do these go //
-    var chart = bubbleChart(myJSON).width(800).height(400);
-    d3.select('#bubbleChart').data(myJSON).call(chart);
-    // where do these go //
+function bubbleChart() {
 
     var width = '100vw',
         height = 960,

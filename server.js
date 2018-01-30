@@ -25,5 +25,5 @@ app.get('/callback', function (req, res) {
 // START SERVER ====================================================
 
 app.listen(process.env.PORT || 8888, function() {
-    console.log("I'm listening");
+    console.log("I'm listening at 8888");
 });
