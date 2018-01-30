@@ -171,10 +171,6 @@ function startApp() {
             console.log("can't be empty");
             $('#error').append("Input can't be empty.");
         }
-        // else {
-        //     $('#error').empty();
-        // }
-
         let resultIDs = [];
         e.preventDefault();
         $('#results').empty();
@@ -243,8 +239,6 @@ function startApp() {
                 data: {
                     ids: idString
                 },
-                // limit: 50,
-                // time_range: 'long_term',
                 beforeSend: function(xhr) {
                     xhr.setRequestHeader('Authorization', 'Bearer ' + access_token);
                 },
@@ -252,10 +246,8 @@ function startApp() {
                     var totals = {
                         energy: 0,
                         danceability: 0,
-                        // loudness: 0,
                         liveness: 0,
                         acousticness: 0,
-                        // instrumentalness: 0,
                         valence: 0,
                         tempo: 0,
                         duration_ms: 0,
@@ -505,7 +497,6 @@ function bubbleChart() {
 
     var width = '100vw',
         height = 960,
-        maxRadius = 6,
         columnForColors = "name",
         columnForRadius = "popularity";
 
@@ -521,9 +512,9 @@ function bubbleChart() {
 
         function ticked(e) {
             node.attr("cx", function(d) {
-                return d.x * 4;
+                return d.x * 2;
             }).attr("cy", function(d) {
-                return d.y * 4;
+                return d.y * 2;
             });
         }
 
@@ -568,31 +559,8 @@ function bubbleChart() {
         height = value;
         return chart;
     };
-
-    chart.columnForColors = function(value) {
-        if (!arguments.columnForColors) {
-            return columnForColors;
-        }
-        columnForColors = value;
-        return chart;
-    };
-
-    chart.columnForRadius = function(value) {
-        if (!arguments.columnForRadius) {
-            return columnForRadius;
-        }
-        columnForRadius = value;
-        return chart;
-    };
-
     return chart;
 }
-
-
-
-
-
-
 
 
 // GET: audio features based on single track
@@ -626,10 +594,7 @@ function trackFeatures(id) {
                     value: data.speechiness
                 }
             ];
-
-            // make a chart for indiv song features
             indivAudioFeaturesChart(features);
-
         }
     });
 
@@ -647,6 +612,11 @@ function trackFeatures(id) {
         }
     });
 }
+
+
+
+
+
 
 // CHART: individual audio features
 function indivAudioFeaturesChart(features) {
