@@ -129,7 +129,8 @@ function startApp() {
                 xhr.setRequestHeader('Authorization', 'Bearer ' + access_token);
             },
             success: function(data) {
-                var myJSON = JSON.stringify(data.items);
+                var preMyJSON = JSON.stringify(data.items);
+                var myJSON = JSON.parse(preMyJSON);
                 console.log("calling d3 chart");
                 var chart = bubbleChart(myJSON).width(800).height(400);
                 d3.select('#bubbleChart').data(myJSON).call(chart);
