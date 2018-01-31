@@ -1,7 +1,6 @@
 # Spotify API charts
 
-An interactive visualization of your Spotify listening habits. Built with: D3.js, JQuery, Express and Handlebars Edit
-Add topics
+An interactive visualization of your Spotify listening habits. Built with: D3.js, JQuery, Express and Handlebars.
 
 My final project for Spiced Academy, a 12 week JavaScript-based web development course. Spotify API charts was completed in the last week of the course.
 
