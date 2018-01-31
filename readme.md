@@ -4,6 +4,8 @@ An interactive visualization of your Spotify listening habits. Built with: D3.js
 
 My final project for Spiced Academy, a 12 week JavaScript-based web development course. Spotify API charts was completed in the last week of the course.
 
+View online [here](http://spotify-api-charts.herokuapp.com/)
+
 ## Technology
 * **Data Viz:** [D3.js](https://d3js.org/) (bubble chart), [Britecharts](https://github.com/eventbrite/britecharts) (bar charts)
 
