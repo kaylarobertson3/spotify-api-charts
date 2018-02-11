@@ -132,7 +132,7 @@ function startApp() {
                 var preMyJSON = JSON.stringify(data.items);
                 var myJSON = JSON.parse(preMyJSON);
                 console.log("calling d3 chart");
-                var chart = bubbleChart(myJSON);
+                var chart = bubbleChart(myJSON).width('100vw').height(400);
                 d3.select('#bubbleChart').data(myJSON).call(chart);
             }
         });
