@@ -395,7 +395,7 @@ function startApp() {
 //bubbleChart
 function bubbleChart() {
 
-    var width = '100%',
+    var width = '200%',
         height = 600,
         columnForColors = "name",
         columnForRadius = "popularity";
