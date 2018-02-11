@@ -412,9 +412,9 @@ function bubbleChart() {
 
         function ticked(e) {
             node.attr("cx", function(d) {
-                return d.x * 1.5;
+                return d.x * 1;
             }).attr("cy", function(d) {
-                return d.y * 1.5;
+                return d.y * 1;
             });
         }
 
