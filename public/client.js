@@ -132,7 +132,7 @@ function startApp() {
                 var preMyJSON = JSON.stringify(data.items);
                 var myJSON = JSON.parse(preMyJSON);
                 console.log("calling d3 chart");
-                var chart = bubbleChart(myJSON).width('100vw').height(400);
+                var chart = bubbleChart(myJSON);
                 d3.select('#bubbleChart').data(myJSON).call(chart);
             }
         });
@@ -395,8 +395,8 @@ function startApp() {
 //bubbleChart
 function bubbleChart() {
 
-    var width = '100vw',
-        height = 960,
+    var width = '30%',
+        height = 600,
         columnForColors = "name",
         columnForRadius = "popularity";
 
